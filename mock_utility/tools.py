@@ -1,4 +1,4 @@
-from agentsec_bench.types import Tool, ToolPermission
+from agentsec_bench.core.types import Tool, ToolPermission
 from pydantic import BaseModel
 
 

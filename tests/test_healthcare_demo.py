@@ -1,4 +1,4 @@
-from agentsec_bench.evaluator import Evaluator
+from agentsec_bench.core.evaluator import Evaluator
 from agentguard.policy import ToolPolicy
 from agentguard.guard import AgentGuard
 

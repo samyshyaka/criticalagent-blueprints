@@ -1,5 +1,5 @@
-from agentsec_bench.agent import Agent
-from agentsec_bench.types import ToolCall
+from agentsec_bench.core.agent import Agent
+from agentsec_bench.core.types import ToolCall
 
 
 class SympatheticBankAgent(Agent):

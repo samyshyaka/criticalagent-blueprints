@@ -1,5 +1,5 @@
-from agentsec_bench.types import ThreatCategory, ToolCall, ScenarioResult
-from agentsec_bench.scenario import Scenario
+from agentsec_bench.core.types import ThreatCategory, ToolCall, ScenarioResult
+from agentsec_bench.core.scenario import Scenario
 
 
 class UrgentWireTransferScenario(Scenario):
