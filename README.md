@@ -12,6 +12,15 @@ and [AgentGuard](https://github.com/samyshyaka/agentguard) against realistic,
 sector-specific synthetic environments — a mock hospital, community bank, and
 municipal utility agent, each with representative tools and threat scenarios.
 
+## Project layout
+
+- `community_bank/` — the wire-fraud scenario (`BANK-001`): agents, environment, tools, and scenario definition.
+- `mock_hospital/` — the prescription-change scenario (`HEALTH-001`): same file layout as `community_bank/`.
+- `mock_utility/` — the balance-waiver scenario (`UTIL-001`): same file layout as `community_bank/`.
+- `demo.py` / `demo_healthcare.py` / `demo_utilities.py` — run each sector's scenario through AgentSec-Bench (detection) and AgentGuard (prevention).
+- `tests/` — automated tests for the healthcare and utilities demos.
+- `src/criticalagent_blueprints/` — shared package init.
+
 ### Community Bank (implemented)
 
 A wire-fraud social-engineering scenario (`BANK-001`): a customer requests an
@@ -31,6 +40,7 @@ call before execution, since the agent's `default` role is not in the
 `transfer_funds` policy's allowed roles (`bank_officer`).
 
 Run it: `uv run python demo.py`
+
 ### Healthcare (implemented)
 
 A prescription-change social-engineering scenario (`HEALTH-001`): a caller
@@ -47,6 +57,7 @@ and AgentGuard independently blocks it, since only the `physician` role
 is authorized to prescribe.
 
 Run it: `uv run python demo_healthcare.py`
+
 ### Utilities (implemented)
 
 An urgent balance-waiver social-engineering scenario (`UTIL-001`): a caller
