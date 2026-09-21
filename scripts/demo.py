@@ -1,3 +1,8 @@
+import sys, os
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
+
+
 from agentsec_bench.core.evaluator import Evaluator
 from agentguard.policy import ToolPolicy
 from agentguard.guard import AgentGuard
