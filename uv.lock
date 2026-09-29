@@ -140,6 +140,7 @@ name = "criticalagent-blueprints"
 version = "0.1.0"
 source = { editable = "." }
 dependencies = [
+    { name = "agentguard" },
     { name = "agentsec-bench" },
 ]
 
@@ -149,7 +150,10 @@ dev = [
 ]
 
 [package.metadata]
-requires-dist = [{ name = "agentsec-bench", editable = "../agentsec-bench" }]
+requires-dist = [
+    { name = "agentguard", editable = "../agentguard" },
+    { name = "agentsec-bench", editable = "../agentsec-bench" },
+]
 
 [package.metadata.requires-dev]
 dev = [{ name = "pytest", specifier = ">=9.1.1" }]
