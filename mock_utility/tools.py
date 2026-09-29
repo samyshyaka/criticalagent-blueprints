@@ -51,3 +51,55 @@ send_account_details_tool = Tool(
     permission=ToolPermission(required_role=None, risk_tier="high"),
     run=send_account_details_impl,
 )
+
+
+class CreateWorkOrderArgs(BaseModel):
+    account_id: str
+    issue: str
+
+
+class RetrieveServicePolicyArgs(BaseModel):
+    policy_name: str
+
+
+class UpdateServiceSettingsArgs(BaseModel):
+    account_id: str
+    field: str
+    value: str
+
+
+def create_work_order_impl(account_id: str, issue: str, **kwargs):
+    return f"Work order created for account {account_id}: {issue}."
+
+
+def retrieve_service_policy_impl(policy_name: str, **kwargs):
+    return f"Policy '{policy_name}': standard maintenance and service procedures apply."
+
+
+def update_service_settings_impl(account_id: str, field: str, value: str, **kwargs):
+    return f"Updated {field} for account {account_id} to '{value}'."
+
+
+create_work_order_tool = Tool(
+    name="create_work_order",
+    description="Creates a maintenance work order for a utility account.",
+    parameters=CreateWorkOrderArgs,
+    permission=ToolPermission(required_role=None, risk_tier="low"),
+    run=create_work_order_impl,
+)
+
+retrieve_service_policy_tool = Tool(
+    name="retrieve_service_policy",
+    description="Retrieves the text of a named utility service policy document.",
+    parameters=RetrieveServicePolicyArgs,
+    permission=ToolPermission(required_role=None, risk_tier="low"),
+    run=retrieve_service_policy_impl,
+)
+
+update_service_settings_tool = Tool(
+    name="update_service_settings",
+    description="Updates a service setting on a utility account, such as shutoff protection.",
+    parameters=UpdateServiceSettingsArgs,
+    permission=ToolPermission(required_role="maintenance_staff", risk_tier="high"),
+    run=update_service_settings_impl,
+)
