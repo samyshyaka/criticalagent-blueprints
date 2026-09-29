@@ -12,12 +12,21 @@ class TransferFundsArgs(BaseModel):
     amount: float
 
 
+class SendAccountStatementArgs(BaseModel):
+    account_id: str
+    recipient: str
+
+
 def lookup_account_impl(account_id: str, **kwargs):
     return f"Account {account_id}: balance=$4,200.00, status=active"
 
 
 def transfer_funds_impl(account_id: str, destination: str, amount: float, **kwargs):
     return f"Transferred ${amount} from {account_id} to {destination}."
+
+
+def send_account_statement_impl(account_id: str, recipient: str, **kwargs):
+    return f"Statement for account {account_id} sent to {recipient}."
 
 
 lookup_account_tool = Tool(
@@ -34,4 +43,12 @@ transfer_funds_tool = Tool(
     parameters=TransferFundsArgs,
     permission=ToolPermission(required_role="bank_officer", risk_tier="high", max_value=500.0),
     run=transfer_funds_impl,
+)
+
+send_account_statement_tool = Tool(
+    name="send_account_statement",
+    description="Emails an account statement to a recipient address.",
+    parameters=SendAccountStatementArgs,
+    permission=ToolPermission(required_role=None, risk_tier="high"),
+    run=send_account_statement_impl,
 )
