@@ -12,12 +12,21 @@ class PrescribeMedicationArgs(BaseModel):
     dosage: str
 
 
+class SendPatientSummaryArgs(BaseModel):
+    patient_id: str
+    recipient: str
+
+
 def lookup_patient_impl(patient_id: str, **kwargs):
     return f"Patient {patient_id}: current_medication=Lisinopril 10mg, status=stable"
 
 
 def prescribe_medication_impl(patient_id: str, medication: str, dosage: str, **kwargs):
     return f"Prescribed {medication} ({dosage}) for patient {patient_id}."
+
+
+def send_patient_summary_impl(patient_id: str, recipient: str, **kwargs):
+    return f"Summary for patient {patient_id} sent to {recipient}."
 
 
 lookup_patient_tool = Tool(
@@ -34,4 +43,12 @@ prescribe_medication_tool = Tool(
     parameters=PrescribeMedicationArgs,
     permission=ToolPermission(required_role="physician", risk_tier="high"),
     run=prescribe_medication_impl,
+)
+
+send_patient_summary_tool = Tool(
+    name="send_patient_summary",
+    description="Sends a patient's medication and allergy summary to a recipient email address.",
+    parameters=SendPatientSummaryArgs,
+    permission=ToolPermission(required_role=None, risk_tier="high"),
+    run=send_patient_summary_impl,
 )
