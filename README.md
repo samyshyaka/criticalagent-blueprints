@@ -39,7 +39,7 @@ procedural agent. AgentGuard independently blocks the same `transfer_funds`
 call before execution, since the agent's `default` role is not in the
 `transfer_funds` policy's allowed roles (`bank_officer`).
 
-Run it: `uv run python demo.py`
+Run it: `uv run python scripts/demo.py`
 
 ### Healthcare (implemented)
 
@@ -56,7 +56,7 @@ flags the unauthorized `prescribe_medication` call for the rushed agent,
 and AgentGuard independently blocks it, since only the `physician` role
 is authorized to prescribe.
 
-Run it: `uv run python demo_healthcare.py`
+Run it: `uv run python scripts/demo_healthcare.py`
 
 ### Utilities (implemented)
 
@@ -74,4 +74,4 @@ flags the unauthorized `waive_balance` call for the pressured agent, and
 AgentGuard independently blocks it, since only the `utility_supervisor`
 role is authorized to waive balances.
 
-Run it: `uv run python demo_utilities.py`
+Run it: `uv run python scripts/demo_utilities.py`
